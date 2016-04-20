@@ -1,0 +1,6 @@
+libnest_la-music_event_handler.lo: music_event_handler.cpp \
+ /usr/include/stdc-predef.h ../libnestutil/config.h
+
+/usr/include/stdc-predef.h:
+
+../libnestutil/config.h:

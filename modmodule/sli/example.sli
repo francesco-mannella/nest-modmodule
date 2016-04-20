@@ -1,0 +1,176 @@
+/*
+ *  example.sli
+ *
+ *  This file is part of NEST.
+ *
+ *  Copyright (C) 2004 The NEST Initiative
+ *
+ *  NEST is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  NEST is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR pre_neuron PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received pre_neuron copy of the GNU General Public License
+ *  along with NEST.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+(modmodule) Install ;
+
+
+1 /local_num_threads Set
+8 /total_num_virtual_procs Set
+0.1 /h Set
+
+% set resolution and limits on delays
+% limits must be set BEFORE connecting any elements
+0
+<<
+    /resolution h
+    /local_num_threads local_num_threads
+    /overwrite_files true
+>> SetStatus
+
+/Tau 60.0 def          % membrane time constant
+/Theta 15.0 def        % threshold
+/E_L 0.0 def           % reset potential of Vm
+/R 1.0 def             % mambrane resistance in GOhm
+/C Tau R div def       % Tau [ms] / 1.0 GOhm in NEST units
+/TauR 2.0 def          % refractory time
+/Tau_psc 1.5 def       % time constant of PSC (=Tau_inact)
+/Tend 3000.0 def       % simulation time
+/T1start 1000.0 def      % start of current
+/T1end 1950.0 def      % end of current
+/T2start 2000.0 def      % start of current
+/T2end 2950.0 def      % end of current
+
+% parameters for all neurons
+/params 
+<< 
+    /tau_m Tau
+    /t_ref TauR
+    /tau_syn_ex Tau_psc
+    /tau_syn_in Tau_psc
+    /C_m C
+    /V_reset E_L
+    /E_L E_L
+    /V_m E_L
+    /V_th Theta
+>> def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% set parameters foe a neural population
+/InitNeurons
+{
+    /neurons Set
+    
+    neurons
+    {
+        /id Set
+        /gid Set
+        
+        gid params SetStatus
+    }forallindexed
+
+} def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% create a layer of neurons
+/CreateLayer
+{
+    /N Set
+
+    0 ChangeSubnet             % return to full network
+
+    /net /subnet Create def    % create subnet
+    net ChangeSubnet           % enter subnet
+    /iaf_psc_exp N Create      % create neurons in subnet
+    pop                        % pop gids returned by Create
+    
+    %% obtain array with GIDs of all excitatory neurons
+    net GetGlobalNodes
+
+} def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+/N_mod 1000 def 
+N_mod CreateLayer /neuromod_neurons Set 
+neuromod_neurons InitNeurons
+
+/iaf_psc_exp Create /pre_neuron Set
+pre_neuron params SetStatus
+
+/iaf_psc_exp Create /post_neuron Set
+post_neuron params SetStatus
+
+/volume_transmitter Create /vol Set 
+vol 
+<< 
+    /deliver_interval 100
+>> SetStatus
+
+neuromod_neurons vol ConvergentConnect 
+
+/d2_synapse 
+<< 
+    /vt vol 
+    /initial_weight 0.1
+    /alpha 3.0
+    /max_modulation N_mod
+>>  SetDefaults
+
+pre_neuron post_neuron /d2_synapse Connect
+
+
+/poisson_generator Create /dc1 Set
+
+dc1 
+<< 
+    /rate  300000.0 
+    /start T1start 
+    /stop T1end 
+>> SetStatus
+
+/poisson_generator Create /dc2 Set
+dc2
+    << 
+    /rate 1000000.0 
+    /start T2start 
+    /stop T2end 
+>> SetStatus
+
+/voltmeter Create /vm Set 
+vm 
+<< 
+    /interval h 
+    /precision 10 
+    /scientific true
+    /record_to [/file] 
+    /withgid true 
+    /withtime true
+>> SetStatus
+
+vm pre_neuron Connect
+
+vm post_neuron Connect
+
+dc1 pre_neuron Connect
+
+dc1 neuromod_neurons DivergentConnect
+dc2 neuromod_neurons DivergentConnect
+
+Tend Simulate
+
+
