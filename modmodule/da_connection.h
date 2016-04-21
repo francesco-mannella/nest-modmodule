@@ -1,18 +1,56 @@
+/*  
+ *  
+ *   MIT License
+ *   
+ *   Copyright (c) 2016 Francesco Mannella and Daniele Caligiore
+ *   
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *   of this software and associated documentation files (the "Software"), to deal
+ *   in the Software without restriction, including without limitation the rights
+ *   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *   copies of the Software, and to permit persons to whom the Software is
+ *   furnished to do so, subject to the following conditions:
+ *   
+ *   The above copyright notice and this permission notice shall be included in all
+ *   copies or substantial portions of the Software.
+ *   
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *   SOFTWARE.
+ *  
+ */
+
 #ifndef DA_CONNECTION
 #define DA_CONNECTION
 
 #include "connection.h"
 #include "modulatory_connection.h"
 #include <vector>
+    
+/*
+ *  Implements modulatory synapse to reproduce DIR and D2R dopaminergic modulation as in
+ *  Humphries et al. 2006 (http://dx.doi.org/10.1523/JNEUROSCI.3486-06.2006).
+ */
 
 namespace mynest
 {
 
-    /**
-     * D1 connection
-     * A third moduatory neuron can change the 
-     * strength of the weights 
-     */
+    /*
+    *  The class D1Connection implements a dopaminergic synapse in which   
+    *  the information from the volume transmitter modulates the amplitude of the weight as
+    *  in D1R synapses in the model by Humphries et al. 2006 (http://dx.doi.org/10.1523/JNEUROSCI.3486-06.2006).
+    *  
+    *  weight = initial_weight*(1 + alpha*modulation)
+    *
+    *  Parameters:
+    *      initial_weight =>  the baseline value which has to be multiplied times the *modulation* 
+    *      alpha => amplitude of the modulated increment
+    */
+
     template < typename targetidentifierT >
         class D1Connection : public ModulatoryConnection< targetidentifierT >
     {
@@ -76,11 +114,17 @@ namespace mynest
         }
 
 
-    /**
-     * D2 connection
-     * A third moduatory neuron can change the 
-     * strength of the weights 
-     */
+    /*
+    *  The class D1Connection implements a dopaminergic synapse in which   
+    *  the information from the volume transmitter modulates the amplitude of the weight as
+    *  in D2R synapses in the model by Humphries et al. 2006 (http://dx.doi.org/10.1523/JNEUROSCI.3486-06.2006).
+    *  
+    *  weight = initial_weight*(1 - alpha*modulation)
+    *
+    *  Parameters:
+    *      initial_weight =>  the baseline value which has to be multiplied times the *modulation* 
+    *      alpha => amplitude of the modulated decrease
+    */
     template < typename targetidentifierT >
         class D2Connection : public ModulatoryConnection< targetidentifierT >
     {

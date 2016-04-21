@@ -1,3 +1,45 @@
+/*  
+ *  
+ *   MIT License
+ *   
+ *   Copyright (c) 2016 Francesco Mannella and Daniele Caligiore
+ *   
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *   of this software and associated documentation files (the "Software"), to deal
+ *   in the Software without restriction, including without limitation the rights
+ *   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *   copies of the Software, and to permit persons to whom the Software is
+ *   furnished to do so, subject to the following conditions:
+ *   
+ *   The above copyright notice and this permission notice shall be included in all
+ *   copies or substantial portions of the Software.
+ *   
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *   SOFTWARE.
+ *  
+ */
+
+/*
+ *   Modified from https://github.com/nest/nest-simulator/blob/v2.10.0/examples/MyModule/drop_odd_spike_connection.h
+ */
+
+
+/*
+ *  The class ModulatoryConnection implements a synapse in which   
+ *  the information from the volume transmitter modulates the amplitude of the weight.
+ *  In particular the *modulation* ( ratio of spikes per delivery interval of the 
+ *  volume transmitter) directly multiplies the baseline weight.
+ *
+ *  Parameters:
+ *      initial_weight =>  the baseline value which has to be multiplied times the *modulation* 
+ */
+
+
 #ifndef MODULATORY_CONNECTION
 #define MODULATORY_CONNECTION
 
@@ -36,6 +78,10 @@ namespace mynest
 
             nest::volume_transmitter* vt_;
 
+            /**
+             * The max amount of spikes that this transmitter receives
+             * (usually the number of neurons in the source population)
+             */ 
             nest::long_t max_modulation_;
     };
 
@@ -235,17 +281,20 @@ namespace mynest
                 num_spikes += sc.multiplicity_;
 
 
+            // Get the value of the 'deliver_interval' parameter
+            // in the shared volume transmitter
             DictionaryDatum d( new Dictionary );
-
             cp.vt_->get_status(d);
-
             nest::long_t di =  getValue<nest::long_t>(d, "deliver_interval");
 
+            // compute the ratio of spikes per delivery_interval between [0,1]
             nest::double_t modulation =  2*num_spikes/(di*cp.max_modulation_);
+            
+            // update the weight based on a function of the ratio 
+            // given by the compute_modulation() method
             weight_ = initial_weight_*compute_modulation(modulation);
              
         }
-
 
 } // namespace nest
 
