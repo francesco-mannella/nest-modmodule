@@ -148,11 +148,6 @@ namespace mynest
                     {
                         return nest::invalid_port_;
                     }
-
-                    nest::port handles_test_event( nest::DSSpikeEvent&, nest::rport )
-                    {
-                        return nest::invalid_port_;
-                    }
             };
 
             /**
@@ -239,8 +234,6 @@ namespace mynest
                 nest::double_t last,
                 const CommonPropertiesType& props )
         {
-            if ( e.get_stamp().get_steps() % 2 ) // stamp is odd, drop it
-                return;
 
             // Even time stamp, we send the spike using the normal sending mechanism
             // send the spike to the target
@@ -276,23 +269,32 @@ namespace mynest
                 const nest::double_t t_trig,
                 const CommonPropertiesType& cp )
         {
+            
+            
             nest::double_t num_spikes = 0;
             for(const auto & sc: modulatory_spikes)
                 num_spikes += sc.multiplicity_;
 
 
+            static nest::double_t last_trig = 0.0;
+
             // Get the value of the 'deliver_interval' parameter
             // in the shared volume transmitter
-            DictionaryDatum d( new Dictionary );
-            cp.vt_->get_status(d);
-            nest::long_t di =  getValue<nest::long_t>(d, "deliver_interval");
+            nest::long_t di =  t_trig - last_trig;
 
-            // compute the ratio of spikes per delivery_interval between [0,1]
-            nest::double_t modulation =  2*num_spikes/(di*cp.max_modulation_);
-            
-            // update the weight based on a function of the ratio 
-            // given by the compute_modulation() method
-            weight_ = initial_weight_*compute_modulation(modulation);
+            if (di > 0.0) 
+            {
+
+                // compute the ratio of spikes per delivery_interval between [0,1]
+                nest::double_t modulation =  2*num_spikes/(di*cp.max_modulation_);
+
+                // update the weight based on a function of the ratio 
+                // given by the compute_modulation() method
+                weight_ = initial_weight_*compute_modulation(modulation);
+
+            }
+
+            last_trig = t_trig;
              
         }
 
