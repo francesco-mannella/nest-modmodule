@@ -78,6 +78,7 @@ namespace mynest
 
             nest::volume_transmitter* vt_;
 
+
             /**
              * The max amount of spikes that this transmitter receives
              * (usually the number of neurons in the source population)
@@ -104,6 +105,8 @@ namespace mynest
         private:
             nest::double_t initial_weight_; //!< Initial synaptic weight
             nest::double_t weight_; //!< Synaptic weight
+            nest::double_t deliver_interval; //!< deliver interval of the connected volume transmitter
+
 
         public:
             //! Type to use for representing common synapse properties
@@ -117,10 +120,22 @@ namespace mynest
              * Sets default values for all parameters. Needed by GenericConnectorModel.
              */
             ModulatoryConnection() 
-                : ConnectionBase(),initial_weight_(1.0), weight_(initial_weight_ )
+                : ConnectionBase()
+                  ,weight_(1.0)
+                  ,initial_weight_(1.0)
+                  ,deliver_interval(100.0)
             {
-
+                initial_weight_ = weight_;
             }
+
+            ModulatoryConnection( const ModulatoryConnection& rhs) 
+                : ConnectionBase(rhs)
+                  ,weight_(rhs.weight_ )
+                  ,initial_weight_(rhs.initial_weight_)
+                  ,deliver_interval(rhs.deliver_interval)
+            {
+            }
+
 
             //! Default Destructor.
             virtual ~ModulatoryConnection()
@@ -218,7 +233,7 @@ namespace mynest
             //! Allows efficient initialization on contstruction
             void  set_weight( nest::double_t w )
             {
-                initial_weight_ = w;
+                weight_ = w;
             }
 
             virtual nest::double_t compute_modulation(nest::double_t modulation)
@@ -250,7 +265,7 @@ namespace mynest
             ConnectionBase::get_status( d );
             def< nest::double_t >( d, nest::names::weight, weight_ );
             def< nest::double_t >( d, "initial_weight", initial_weight_ );
-            def< nest::long_t >( d, nest::names::size_of, sizeof( *this ) );
+            def< nest::double_t >( d, "deliver_interval", deliver_interval );
         }
 
     template < typename targetidentifierT >
@@ -260,6 +275,7 @@ namespace mynest
             ConnectionBase::set_status( d, cm );
             updateValue< nest::double_t >( d, nest::names::weight, weight_ );
             updateValue< nest::double_t >( d, "initial_weight", initial_weight_ );
+            updateValue< nest::double_t >( d, "deliver_interval", deliver_interval );
         }
     
     template < typename targetidentifierT >
@@ -268,34 +284,19 @@ namespace mynest
                 const std::vector< nest::spikecounter >& modulatory_spikes,
                 const nest::double_t t_trig,
                 const CommonPropertiesType& cp )
-        {
-            
+        {     
             
             nest::double_t num_spikes = 0;
             for(const auto & sc: modulatory_spikes)
                 num_spikes += sc.multiplicity_;
 
+            // compute the ratio of spikes per deliver_interval between [0,1]
+            nest::double_t modulation =  2*num_spikes/(deliver_interval*cp.max_modulation_);
 
-            static nest::double_t last_trig = 0.0;
-
-            // Get the value of the 'deliver_interval' parameter
-            // in the shared volume transmitter
-            nest::long_t di =  t_trig - last_trig;
-
-            if (di > 0.0) 
-            {
-
-                // compute the ratio of spikes per delivery_interval between [0,1]
-                nest::double_t modulation =  2*num_spikes/(di*cp.max_modulation_);
-
-                // update the weight based on a function of the ratio 
-                // given by the compute_modulation() method
-                weight_ = initial_weight_*compute_modulation(modulation);
-
-            }
-
-            last_trig = t_trig;
-             
+            // update the weight based on a function of the ratio 
+            // given by the compute_modulation() method
+            weight_ = initial_weight_*compute_modulation(modulation);
+            
         }
 
 } // namespace nest
