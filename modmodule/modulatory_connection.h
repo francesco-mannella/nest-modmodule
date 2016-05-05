@@ -30,7 +30,7 @@
 
 
 /*
- *  The class ModulatoryConnection implements a synapse in which   
+ *  The class ModulatoryConnection implements a generic synapse in which   
  *  the information from the volume transmitter modulates the amplitude of the weight.
  *  In particular the *modulation* ( ratio of spikes per delivery interval of the 
  *  volume transmitter) directly multiplies the baseline weight.
@@ -103,9 +103,9 @@ namespace mynest
         class ModulatoryConnection : public nest::Connection< targetidentifierT >
     {
         private:
-            nest::double_t initial_weight_; //!< Initial synaptic weight
+            nest::double_t weight_baseline; //!< Initial synaptic weight
             nest::double_t weight_; //!< Synaptic weight
-            nest::double_t deliver_interval; //!< deliver interval of the connected volume transmitter
+            nest::long_t deliver_interval; //!< deliver interval of the connected volume transmitter
 
 
         public:
@@ -122,16 +122,16 @@ namespace mynest
             ModulatoryConnection() 
                 : ConnectionBase()
                   ,weight_(1.0)
-                  ,initial_weight_(1.0)
-                  ,deliver_interval(100.0)
+                  ,weight_baseline(1.0)
+                  ,deliver_interval(100)
             {
-                initial_weight_ = weight_;
+                weight_ = weight_baseline;
             }
 
             ModulatoryConnection( const ModulatoryConnection& rhs) 
                 : ConnectionBase(rhs)
                   ,weight_(rhs.weight_ )
-                  ,initial_weight_(rhs.initial_weight_)
+                  ,weight_baseline(rhs.weight_baseline)
                   ,deliver_interval(rhs.deliver_interval)
             {
             }
@@ -264,8 +264,8 @@ namespace mynest
         {
             ConnectionBase::get_status( d );
             def< nest::double_t >( d, nest::names::weight, weight_ );
-            def< nest::double_t >( d, "initial_weight", initial_weight_ );
-            def< nest::double_t >( d, "deliver_interval", deliver_interval );
+            def< nest::double_t >( d, "weight_baseline", weight_baseline );
+            def< nest::long_t >( d, "deliver_interval", deliver_interval );
         }
 
     template < typename targetidentifierT >
@@ -274,8 +274,8 @@ namespace mynest
         {
             ConnectionBase::set_status( d, cm );
             updateValue< nest::double_t >( d, nest::names::weight, weight_ );
-            updateValue< nest::double_t >( d, "initial_weight", initial_weight_ );
-            updateValue< nest::double_t >( d, "deliver_interval", deliver_interval );
+            updateValue< nest::double_t >( d, "weight_baseline", weight_baseline );
+            updateValue< nest::long_t >( d, "deliver_interval", deliver_interval );
         }
     
     template < typename targetidentifierT >
@@ -295,7 +295,7 @@ namespace mynest
 
             // update the weight based on a function of the ratio 
             // given by the compute_modulation() method
-            weight_ = initial_weight_*compute_modulation(modulation);
+            weight_ = weight_baseline*compute_modulation(modulation);
             
         }
 
