@@ -257,6 +257,7 @@ namespace mynest
             e.set_receiver( *ConnectionBase::get_target( t ) );
             e.set_rport( ConnectionBase::get_rport() );
             e(); // this sends the event
+
         }
 
     template < typename targetidentifierT >
@@ -266,6 +267,7 @@ namespace mynest
             def< nest::double_t >( d, nest::names::weight, weight_ );
             def< nest::double_t >( d, "weight_baseline", weight_baseline );
             def< nest::long_t >( d, "deliver_interval", deliver_interval );
+            def< nest::long_t >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >
@@ -296,7 +298,7 @@ namespace mynest
             // update the weight based on a function of the ratio 
             // given by the compute_modulation() method
             weight_ = weight_baseline*compute_modulation(modulation);
-            
+          
         }
 
 } // namespace nest
