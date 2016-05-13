@@ -115,7 +115,7 @@ namespace mynest
 
 
     /*
-    *  The class D1Connection implements a dopaminergic synapse in which   
+    *  The class D2Connection implements a dopaminergic synapse in which   
     *  the information from the volume transmitter modulates the amplitude of the weight as
     *  in D2R synapses in the model by Humphries et al. 2006 (http://dx.doi.org/10.1523/JNEUROSCI.3486-06.2006).
     *  
@@ -181,6 +181,82 @@ namespace mynest
 
     template < typename targetidentifierT >
         void D2Connection< targetidentifierT >::set_status( const DictionaryDatum& d,
+                nest::ConnectorModel& cm )
+        {
+            ConnectionBase::set_status( d, cm );
+            updateValue< nest::double_t >( d, "alpha", alpha );
+        }
+
+
+    /*
+    *  The class D2DivConnection implements a dopaminergic synapse in which   
+    *  the information from the volume transmitter modulates the amplitude of the weight as
+    *  in D2R synapses in the model by Mannella et al. 2016.
+    *  
+    *  weight = initial_weight/(1 + alpha*modulation)
+    *
+    *  assert( (1 + alpha*modulation)>1 )
+    *
+    *  Parameters:
+    *      initial_weight =>  the baseline value which has to be multiplied times the *modulation* 
+    *      alpha => amplitude of the modulated decrease
+    */
+    template < typename targetidentifierT >
+        class D2DivConnection : public ModulatoryConnection< targetidentifierT >
+    {
+        private:
+            
+            nest::double_t alpha;
+
+        public:
+            
+                //! Shortcut for base class
+            typedef ModulatoryConnection< targetidentifierT > ConnectionBase;
+
+
+            D2DivConnection() 
+                : ConnectionBase(), alpha(1.0)
+            {
+            }
+
+            // The following methods contain mostly fixed code to forward the corresponding
+            // tasks to corresponding methods in the base class and the w_ data member holding
+            // the weight.
+
+            //! Store connection status information in dictionary
+            void get_status( DictionaryDatum& d ) const;
+
+            /**
+             * Set connection status.
+             *
+             * @param d Dictionary with new parameter values
+             * @param cm ConnectorModel is passed along to validate new delay values
+             */
+            void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
+
+            //! Allows efficient initialization on contstruction
+            void  set_alpha( nest::double_t alpha_ )
+            {
+                alpha = alpha_;
+            }
+
+            virtual nest::double_t compute_modulation(nest::double_t modulation)
+            {
+                return 1.0/(1.0 + alpha*modulation);
+            }
+    };
+
+
+    template < typename targetidentifierT >
+        void D2DivConnection< targetidentifierT >::get_status( DictionaryDatum& d ) const
+        {
+            ConnectionBase::get_status( d );
+            def< nest::double_t >( d, "alpha", alpha );
+            def< nest::long_t >( d, nest::names::size_of, sizeof( *this ) );
+        }
+
+    template < typename targetidentifierT >
+        void D2DivConnection< targetidentifierT >::set_status( const DictionaryDatum& d,
                 nest::ConnectorModel& cm )
         {
             ConnectionBase::set_status( d, cm );
