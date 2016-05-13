@@ -1,0 +1,746 @@
+
+Mar 24 23:42:54 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:42:54 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:42:54 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/libnestutil
+
+Mar 24 23:42:54 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/libnestutil/.
+
+Mar 24 23:42:54 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:42:54 :makeallhelp [Info]: 
+    Processing directory /home/fra/Dropbox/Projects/nest/nest-2.10.0/sli
+
+Mar 24 23:42:54 :makeallhelp [Info]: 
+    Processing directory /home/fra/Dropbox/Projects/nest/nest-2.10.0/librandom
+
+Mar 24 23:42:54 :makeallhelp [Info]: 
+    Processing directory /home/fra/Dropbox/Projects/nest/nest-2.10.0/lib
+
+Mar 24 23:42:54 :makeallhelp [Info]: 
+    Processing directory /home/fra/Dropbox/Projects/nest/nest-2.10.0/lib/sli
+
+Mar 24 23:42:54 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/lib/sli/nest-init.sli
+
+Mar 24 23:42:54 makehelp [Error]: KeyName:ExpectedError
+    Could not open the following file for reading: "rcsinfo".
+
+Mar 24 23:42:54 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/nestkernel
+
+Mar 24 23:42:54 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/nestkernel/synaptic_element.cpp
+
+Mar 24 23:42:54 ws [Error]: BadIO
+
+Mar 24 23:42:54 :makeallhelp [Info]: 
+    Processing directory /home/fra/Dropbox/Projects/nest/nest-2.10.0/models
+
+Mar 24 23:42:55 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/models/sli
+
+Mar 24 23:42:55 :makeallhelp [Info]: 
+    Processing directory /home/fra/Dropbox/Projects/nest/nest-2.10.0/precise
+
+Mar 24 23:42:55 :makeallhelp [Info]: 
+    Processing directory /home/fra/Dropbox/Projects/nest/nest-2.10.0/topology
+
+Mar 24 23:42:55 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/topology/sli
+
+Mar 24 23:42:55 :makeallhelp [Info]: 
+    Processing directory /home/fra/Dropbox/Projects/nest/nest-2.10.0/nest
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to testsuite::test_iaf in iaf_neuron
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to testsuite::test_sli_neuron in sli_neuron
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to testsuite::test_spike_generator in spike_generator
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to testsuite::test_lambertw in LambertW0
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to testsuite::test_lambertw in LambertW
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to testsuite::test_lambertw in LambertWm1
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to testsuite::test_iaf in unittest::ToUnitTestPrecision
+Done.
+
+Mar 24 23:42:55 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:42:55 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:42:55 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/selftests
+
+Mar 24 23:42:55 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/selftests/.
+
+Mar 24 23:42:55 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:42:55 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to testsuite::test_iaf in iaf_neuron
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to testsuite::test_sli_neuron in sli_neuron
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to testsuite::test_spike_generator in spike_generator
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to testsuite::test_lambertw in LambertW0
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to testsuite::test_lambertw in LambertW
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to testsuite::test_lambertw in LambertWm1
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to testsuite::test_iaf in unittest::ToUnitTestPrecision
+Done.
+
+Mar 24 23:42:56 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:42:56 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:42:56 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/.
+
+Mar 24 23:42:56 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_common_props_setting.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+    Could not open the following file for reading: "rcsinfo".
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_convergent_connect.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_divergent_connect.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_iaf_min_delay_create.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_iaf_min_delay_set.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_multimeter.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_multiple_multimeter.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_poisson_generator_campbell_alpha.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_psp_amplitude_consistency.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_random_convergent_connect.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_random_divergent_connect.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_sinusoidal_gamma_generator.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_sinusoidal_poisson_generator.sli
+
+Mar 24 23:42:56 ws [Error]: BadIO
+
+Mar 24 23:42:56 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/unittests/test_spike_poisson_ps_base2.sli
+
+Mar 24 23:42:56 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:42:56 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:42:57 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+
+Mar 24 23:42:57 SLI [Warning]: 
+    Dead Link to testsuite::test_sinusoidal_gamma_generator_1 in 
+    testsuite::test_sinusoidal_gamma_generator
+
+Mar 24 23:42:57 SLI [Warning]: 
+    Dead Link to testsuite::test_sinusoidal_poisson_generator_1 in 
+    testsuite::test_sinusoidal_poisson_generator
+
+Mar 24 23:42:57 SLI [Warning]: 
+    Dead Link to testsuite::ticket-452 in testsuite::test_steppedsim
+Done.
+
+Mar 24 23:42:57 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:42:57 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:42:57 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/.
+
+Mar 24 23:42:57 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/issue-105.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+    Could not open the following file for reading: "rcsinfo".
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-235.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-293.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-333.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-382.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-399.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-414.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-421.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-451.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-464.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-466.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-475.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-478.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-519.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-520.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-537.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-733.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-737.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-772.sli
+
+Mar 24 23:42:57 ws [Error]: BadIO
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-787.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-800.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-85.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-921.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-926.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-933.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-941.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-949.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/regressiontests/ticket-959.sli
+
+Mar 24 23:42:57 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:57 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:42:57 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:42:57 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+
+Mar 24 23:42:58 SLI [Warning]: 
+    Dead Link to testsuite::test_sinusoidal_gamma_generator_1 in 
+    testsuite::test_sinusoidal_gamma_generator
+
+Mar 24 23:42:58 SLI [Warning]: 
+    Dead Link to testsuite::test_sinusoidal_poisson_generator_1 in 
+    testsuite::test_sinusoidal_poisson_generator
+Done.
+
+Mar 24 23:42:58 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:42:58 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:42:58 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/manualtests
+
+Mar 24 23:42:58 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/manualtests/.
+
+Mar 24 23:42:58 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:42:58 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/manualtests/test_compare_delta.sli
+
+Mar 24 23:42:58 ws [Error]: BadIO
+    Could not open the following file for reading: "rcsinfo".
+
+Mar 24 23:42:58 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/manualtests/test_hh_cond_exp_traub.sli
+
+Mar 24 23:42:58 ws [Error]: BadIO
+
+Mar 24 23:42:58 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/manualtests/test_spike_poisson_ps_base2_f.sli
+
+Mar 24 23:42:58 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:58 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/manualtests/test_spike_poisson_ps_base2_p.sli
+
+Mar 24 23:42:58 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:58 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:42:58 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:42:58 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+
+Mar 24 23:42:59 SLI [Warning]: 
+    Dead Link to testsuite::test_sinusoidal_gamma_generator_1 in 
+    testsuite::test_sinusoidal_gamma_generator
+
+Mar 24 23:42:59 SLI [Warning]: 
+    Dead Link to testsuite::test_sinusoidal_poisson_generator_1 in 
+    testsuite::test_sinusoidal_poisson_generator
+Done.
+
+Mar 24 23:42:59 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:42:59 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:42:59 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpitests
+
+Mar 24 23:42:59 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpitests/.
+
+Mar 24 23:42:59 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:42:59 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpitests/test_gsd_distribution_threaded.sli
+
+Mar 24 23:42:59 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+    Could not open the following file for reading: "rcsinfo".
+
+Mar 24 23:42:59 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpitests/test_gsd.sli
+
+Mar 24 23:42:59 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:59 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpitests/test_gsd_threaded.sli
+
+Mar 24 23:42:59 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+
+Mar 24 23:42:59 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:42:59 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:42:59 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+Done.
+
+Mar 24 23:43:00 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:43:00 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:43:00 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpi_selftests
+
+Mar 24 23:43:00 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpi_selftests/.
+
+Mar 24 23:43:00 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:43:00 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:43:00 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:43:00 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+Done.
+
+Mar 24 23:43:01 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:43:01 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:43:01 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpi_selftests/pass
+
+Mar 24 23:43:01 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpi_selftests/pass/.
+
+Mar 24 23:43:01 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:43:01 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpi_selftests/pass/test_parse_message_line.sli
+
+Mar 24 23:43:01 makehelp [Error]: MissingObligatoryMinusAfterCommandNameError
+    Could not open the following file for reading: "rcsinfo".
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to testsuite::crash_distributed_assert_or_die in 
+    testsuite::test_distributed_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to testsuite::fail_distributed_assert_or_die in 
+    testsuite::test_distributed_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to testsuite::crash_distributed_collect_assert_or_die in 
+    testsuite::test_distributed_collect_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to testsuite::fail_distributed_collect_assert_or_die in 
+    testsuite::test_distributed_collect_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to testsuite::crash_distributed_invariant_assert_or_die in 
+    testsuite::test_distributed_invariant_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to testsuite::fail_distributed_invariant_assert_or_die in 
+    testsuite::test_distributed_invariant_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to testsuite::crash_distributed_pass_or_die in 
+    testsuite::test_distributed_pass_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to testsuite::fail_distributed_pass_or_die in 
+    testsuite::test_distributed_pass_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to 
+    testsuite::crash_distributed_process_invariant_collect_assert_or_die in 
+    testsuite::test_distributed_process_invariant_collect_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to 
+    testsuite::fail_distributed_process_invariant_collect_assert_or_die in 
+    testsuite::test_distributed_process_invariant_collect_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to 
+    testsuite::crash_distributed_process_invariant_events_assert_or_die in 
+    testsuite::test_distributed_process_invariant_events_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to 
+    testsuite::fail_distributed_process_invariant_events_assert_or_die in 
+    testsuite::test_distributed_process_invariant_events_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to 
+    testsuite::crash_distributed_rank_invariant_collect_assert_or_die in 
+    testsuite::test_distributed_rank_invariant_collect_assert_or_die
+
+Mar 24 23:43:01 SLI [Warning]: 
+    Dead Link to 
+    testsuite::fail_distributed_rank_invariant_collect_assert_or_die in 
+    testsuite::test_distributed_rank_invariant_collect_assert_or_die
+Done.
+
+Mar 24 23:43:01 SLIStartup [Info]: 
+    Using SLIDATADIR=/home/fra/opt/nest/share/nest
+
+Mar 24 23:43:01 SLIStartup [Info]: 
+    Using SLIDOCDIR=/home/fra/opt/nest/share/doc/nest
+SLI v2.10.0 (C) 2004 The NEST Initiative
+Generating on-line help pages for NEST ...
+
+Mar 24 23:43:01 :makeallhelp [Info]: 
+    Processing directory 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpi_selftests/fail
+
+Mar 24 23:43:01 :makeallhelp [Error]: 
+    Documentation error in file 
+    /home/fra/Dropbox/Projects/nest/nest-2.10.0/testsuite/mpi_selftests/fail/.
+
+Mar 24 23:43:01 raiserror [Error]: BadErrorHandler
+    : The error handler of a stopped context contained itself an error.
+
+Mar 24 23:43:02 SLI [Warning]: 
+    Dead Link to  in correlospinmatrix_detector
+
+Mar 24 23:43:02 SLI [Warning]: 
+    Dead Link to  in pp_psc_delta
+
+Mar 24 23:43:02 SLI [Warning]: 
+    Dead Link to  in tsodyks_synapse_hom
+Done.
