@@ -82,7 +82,7 @@ mynest::ModModule::~ModModule()
 const std::string
 mynest::ModModule::name( void ) const
 {
-  return std::string( "My NEST Module" ); // Return name of the module
+  return std::string( "ModModule" ); // Return name of the module
 }
 
 const std::string
@@ -116,5 +116,6 @@ mynest::ModModule::init( SLIInterpreter* i )
     nest::NestModule::get_network(), "d1_synapse" );
   nest::register_connection_model< D2Connection< nest::TargetIdentifierPtrRport > >(
     nest::NestModule::get_network(), "d2_synapse" );
-
+  nest::register_connection_model< D2DivConnection< nest::TargetIdentifierPtrRport > >(
+    nest::NestModule::get_network(), "d2_div_synapse" );
 } // ModModule::init()

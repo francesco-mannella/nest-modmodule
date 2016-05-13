@@ -30,7 +30,7 @@
 
 
 /*
- *  The class ModulatoryConnection implements a synapse in which   
+ *  The class ModulatoryConnection implements a generic synapse in which   
  *  the information from the volume transmitter modulates the amplitude of the weight.
  *  In particular the *modulation* ( ratio of spikes per delivery interval of the 
  *  volume transmitter) directly multiplies the baseline weight.
@@ -78,6 +78,7 @@ namespace mynest
 
             nest::volume_transmitter* vt_;
 
+
             /**
              * The max amount of spikes that this transmitter receives
              * (usually the number of neurons in the source population)
@@ -102,8 +103,10 @@ namespace mynest
         class ModulatoryConnection : public nest::Connection< targetidentifierT >
     {
         private:
-            nest::double_t initial_weight_; //!< Initial synaptic weight
+            nest::double_t weight_baseline; //!< Initial synaptic weight
             nest::double_t weight_; //!< Synaptic weight
+            nest::long_t deliver_interval; //!< deliver interval of the connected volume transmitter
+
 
         public:
             //! Type to use for representing common synapse properties
@@ -117,10 +120,22 @@ namespace mynest
              * Sets default values for all parameters. Needed by GenericConnectorModel.
              */
             ModulatoryConnection() 
-                : ConnectionBase(),initial_weight_(1.0), weight_(initial_weight_ )
+                : ConnectionBase()
+                  ,weight_(1.0)
+                  ,weight_baseline(1.0)
+                  ,deliver_interval(100)
             {
-
+                weight_ = weight_baseline;
             }
+
+            ModulatoryConnection( const ModulatoryConnection& rhs) 
+                : ConnectionBase(rhs)
+                  ,weight_(rhs.weight_ )
+                  ,weight_baseline(rhs.weight_baseline)
+                  ,deliver_interval(rhs.deliver_interval)
+            {
+            }
+
 
             //! Default Destructor.
             virtual ~ModulatoryConnection()
@@ -145,11 +160,6 @@ namespace mynest
                 public:
                     using nest::ConnTestDummyNodeBase::handles_test_event;
                     nest::port handles_test_event( nest::SpikeEvent&, nest::rport )
-                    {
-                        return nest::invalid_port_;
-                    }
-
-                    nest::port handles_test_event( nest::DSSpikeEvent&, nest::rport )
                     {
                         return nest::invalid_port_;
                     }
@@ -223,7 +233,7 @@ namespace mynest
             //! Allows efficient initialization on contstruction
             void  set_weight( nest::double_t w )
             {
-                initial_weight_ = w;
+                weight_ = w;
             }
 
             virtual nest::double_t compute_modulation(nest::double_t modulation)
@@ -239,8 +249,6 @@ namespace mynest
                 nest::double_t last,
                 const CommonPropertiesType& props )
         {
-            if ( e.get_stamp().get_steps() % 2 ) // stamp is odd, drop it
-                return;
 
             // Even time stamp, we send the spike using the normal sending mechanism
             // send the spike to the target
@@ -249,6 +257,7 @@ namespace mynest
             e.set_receiver( *ConnectionBase::get_target( t ) );
             e.set_rport( ConnectionBase::get_rport() );
             e(); // this sends the event
+
         }
 
     template < typename targetidentifierT >
@@ -256,7 +265,8 @@ namespace mynest
         {
             ConnectionBase::get_status( d );
             def< nest::double_t >( d, nest::names::weight, weight_ );
-            def< nest::double_t >( d, "initial_weight", initial_weight_ );
+            def< nest::double_t >( d, "weight_baseline", weight_baseline );
+            def< nest::long_t >( d, "deliver_interval", deliver_interval );
             def< nest::long_t >( d, nest::names::size_of, sizeof( *this ) );
         }
 
@@ -266,7 +276,8 @@ namespace mynest
         {
             ConnectionBase::set_status( d, cm );
             updateValue< nest::double_t >( d, nest::names::weight, weight_ );
-            updateValue< nest::double_t >( d, "initial_weight", initial_weight_ );
+            updateValue< nest::double_t >( d, "weight_baseline", weight_baseline );
+            updateValue< nest::long_t >( d, "deliver_interval", deliver_interval );
         }
     
     template < typename targetidentifierT >
@@ -275,25 +286,19 @@ namespace mynest
                 const std::vector< nest::spikecounter >& modulatory_spikes,
                 const nest::double_t t_trig,
                 const CommonPropertiesType& cp )
-        {
+        {     
+            
             nest::double_t num_spikes = 0;
             for(const auto & sc: modulatory_spikes)
                 num_spikes += sc.multiplicity_;
 
+            // compute the ratio of spikes per deliver_interval between [0,1]
+            nest::double_t modulation =  2*num_spikes/(deliver_interval*cp.max_modulation_);
 
-            // Get the value of the 'deliver_interval' parameter
-            // in the shared volume transmitter
-            DictionaryDatum d( new Dictionary );
-            cp.vt_->get_status(d);
-            nest::long_t di =  getValue<nest::long_t>(d, "deliver_interval");
-
-            // compute the ratio of spikes per delivery_interval between [0,1]
-            nest::double_t modulation =  2*num_spikes/(di*cp.max_modulation_);
-            
             // update the weight based on a function of the ratio 
             // given by the compute_modulation() method
-            weight_ = initial_weight_*compute_modulation(modulation);
-             
+            weight_ = weight_baseline*compute_modulation(modulation);
+          
         }
 
 } // namespace nest

@@ -1,47 +1,25 @@
-#################################################################################################
-#
-# MIT License
-# 
-# Copyright (c) 2016 Francesco Mannella and Daniele Caligiore
-# 
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-# 
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-# 
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-#
-#################################################################################################
+#----------------------------------------------------------
+# prova_modulation.py
+#----------------------------------------------------------
 
 import numpy as np
 import time
 
 import nest
 
-#################################################################################################
-#################################################################################################
-#################################################################################################
+######################################################################################################
+######################################################################################################
+######################################################################################################
 
 
 dt = 0.1
-THREADS = 1 # !!!!! MUST USE ONLY ONE THREAD, OTHERWISE WE HAVE SEGFAULT !!!!!!
+THREADS = 4
 SEED = 1
 STIME = 5*100/dt
 
-#################################################################################################
-#################################################################################################
-#################################################################################################
+##################################################################################################
+##################################################################################################
+##################################################################################################
 
 # initialize nest kernel
 #nest.ResetKernel()
@@ -50,9 +28,9 @@ nest.SetKernelStatus({
     "local_num_threads" : THREADS, 
     "resolution" : dt})
     
-#################################################################################################
-## RANDOM GENERATORS ############################################################################
-################################################################################################# 
+##################################################################################################
+## RANDOM GENERATORS #############################################################################
+################################################################################################## 
 
 msd = SEED    # master seed number
 N_vp = nest.GetKernelStatus(['total_num_virtual_procs'])[0]    # number of nest processes
@@ -64,23 +42,23 @@ nest.SetKernelStatus({"grng_seed" : msd+N_vp})
 # initialize nest thread random generators
 nest.SetKernelStatus({"rng_seeds" : range(msd+N_vp+1, msd+2*N_vp+1)})
 
-#################################################################################################
-## UTILS ########################################################################################
-#################################################################################################
+######################################################################################################
+## UTILS #############################################################################################
+######################################################################################################
 
 def bernoulli_distribution(x, RO=0.1) :
     return x*(np.random.random(x.shape)<RO)
 
-#################################################################################################
-#################################################################################################
-#################################################################################################
+######################################################################################################
+######################################################################################################
+######################################################################################################
 
 # install th module 
 nest.Install("modmodule")
 
-NEURONS_PRE_N = 50
-NEURONS_POST_N = 50
-NEURONS_MOD_N = 10
+NEURONS_PRE_N = 5
+NEURONS_POST_N = 5
+NEURONS_MOD_N = 1
 
 # create a poisson generator
 POISSON_GENERATOR = nest.Create("poisson_generator", 100)
@@ -109,7 +87,7 @@ w_array = bernoulli_distribution(w_array, RO=0.1)
 
 # create the modulatory connection 
 conn_dict = {"rule": "all_to_all"}
-syn_dict = {"model": "exitmod_synapse", "initial_weight": w_array }
+syn_dict = {"model": "exitmod_synapse" }
 nest.Connect(NEURONS_PRE,NEURONS_POST, conn_spec=conn_dict, syn_spec=syn_dict)
 
 # connect poisson and neurons
