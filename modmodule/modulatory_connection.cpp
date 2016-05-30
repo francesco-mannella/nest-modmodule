@@ -1,4 +1,5 @@
 /*  
+#include "network.h"
  *  
  *   MIT License
  *   
@@ -24,7 +25,6 @@
  *  
  */
 
-#include "network.h"
 #include "dictdatum.h"
 #include "connector_model.h"
 #include "common_synapse_properties.h"
@@ -69,7 +69,7 @@ namespace mynest
         if ( updateValue< nest::long_t >( d, "vt", vtgid ) )
         {
             vt_ = dynamic_cast< nest::volume_transmitter* >( 
-                    nest::NestModule::get_network().get_node( vtgid ) );
+                    nest::kernel().node_manager.get_node( vtgid ) );
 
             if ( vt_ == 0 )
                 throw nest::BadProperty( "Modulatory source must be "

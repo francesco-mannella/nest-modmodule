@@ -1,6 +1,0 @@
-libmodelsmodule_la-music_event_out_proxy.lo: music_event_out_proxy.cpp \
- /usr/include/stdc-predef.h ../libnestutil/config.h
-
-/usr/include/stdc-predef.h:
-
-../libnestutil/config.h:

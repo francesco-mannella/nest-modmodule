@@ -1,6 +1,0 @@
-libmodelsmodule_la-music_cont_in_proxy.lo: music_cont_in_proxy.cpp \
- /usr/include/stdc-predef.h ../libnestutil/config.h
-
-/usr/include/stdc-predef.h:
-
-../libnestutil/config.h:

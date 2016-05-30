@@ -16,4 +16,4 @@ To compile and install the module just follow the [nest-developer tutorial for e
 
 
 ***Dependencies:***
-The module has been currently tested on the release of nest [2.10.0](http://www.nest-initiative.org/nestactivity/release-of-nest-2-10-0/)
+The module has been currently tested on the last github release 

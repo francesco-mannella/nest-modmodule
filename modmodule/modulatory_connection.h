@@ -44,7 +44,7 @@
 #define MODULATORY_CONNECTION
 
 #include "connection.h"
-#include "static_connection.h"
+#include "volume_transmitter.h"
 #include <vector>
 
 namespace mynest
@@ -121,8 +121,8 @@ namespace mynest
              */
             ModulatoryConnection() 
                 : ConnectionBase()
-                  ,weight_(1.0)
                   ,weight_baseline(1.0)
+                  ,weight_(1.0)
                   ,deliver_interval(100)
             {
                 weight_ = weight_baseline;
@@ -130,8 +130,8 @@ namespace mynest
 
             ModulatoryConnection( const ModulatoryConnection& rhs) 
                 : ConnectionBase(rhs)
-                  ,weight_(rhs.weight_ )
                   ,weight_baseline(rhs.weight_baseline)
+                  ,weight_(rhs.weight_ )
                   ,deliver_interval(rhs.deliver_interval)
             {
             }
@@ -289,7 +289,8 @@ namespace mynest
         {     
             
             nest::double_t num_spikes = 0;
-            for(const auto & sc: modulatory_spikes)
+
+            for(auto &sc: modulatory_spikes)
                 num_spikes += sc.multiplicity_;
 
             // compute the ratio of spikes per deliver_interval between [0,1]
