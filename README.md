@@ -9,7 +9,7 @@ As a general schema:
 modulatory_synapse  :=   weight*ratio
 d1_synapse  :=   weight*(1+alpha*ratio)
 d2_synapse  :=   weight*(1-alpha*ratio)
-d2div_synapse  :=   weight*/(1+alpha*ratio)
+d2_div_synapse  :=   weight*/(1+alpha*ratio)
 
 ```
 
