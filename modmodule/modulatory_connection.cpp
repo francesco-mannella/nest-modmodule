@@ -24,7 +24,7 @@
  *  
  */
 
-#include "network.h"
+//#include "network.h"
 #include "dictdatum.h"
 #include "connector_model.h"
 #include "common_synapse_properties.h"
@@ -50,11 +50,11 @@ namespace mynest
         nest::CommonSynapseProperties::get_status( d );
 
         if ( vt_ != 0 )
-            def< nest::long_t >( d, "vt", vt_->get_gid() );
+            def< long >( d, "vt", vt_->get_gid() );
         else
-            def< nest::long_t >( d, "vt", -1 );
+            def< long >( d, "vt", -1 );
         
-        def< nest::long_t >( d, "max_modulation", max_modulation_ );
+        def< long >( d, "max_modulation", max_modulation_ );
 
     }
 
@@ -63,13 +63,13 @@ namespace mynest
     {
         nest::CommonSynapseProperties::set_status( d, cm );
        
-        updateValue< nest::long_t >( d, "max_modulation", max_modulation_ );
+        updateValue< long >( d, "max_modulation", max_modulation_ );
 
-        nest::long_t vtgid;
-        if ( updateValue< nest::long_t >( d, "vt", vtgid ) )
+        long vtgid;
+        if ( updateValue< long >( d, "vt", vtgid ) )
         {
             vt_ = dynamic_cast< nest::volume_transmitter* >( 
-                    nest::NestModule::get_network().get_node( vtgid ) );
+                    nest::kernel().node_manager.get_node( vtgid ) );
 
             if ( vt_ == 0 )
                 throw nest::BadProperty( "Modulatory source must be "

@@ -56,7 +56,7 @@ namespace mynest
     {
         private:
             
-            nest::double_t alpha;
+            double_t alpha;
 
         public:
             
@@ -85,12 +85,12 @@ namespace mynest
             void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
             //! Allows efficient initialization on contstruction
-            void  set_alpha( nest::double_t alpha_ )
+            void  set_alpha( double_t alpha_ )
             {
                 alpha = alpha_;
             }
 
-            virtual nest::double_t compute_modulation(nest::double_t modulation)
+            virtual double_t compute_modulation(double_t modulation)
             {
                 return 1.0 + alpha*modulation;
             }
@@ -101,8 +101,8 @@ namespace mynest
         void D1Connection< targetidentifierT >::get_status( DictionaryDatum& d ) const
         {
             ConnectionBase::get_status( d );
-            def< nest::double_t >( d, "alpha", alpha );
-            def< nest::long_t >( d, nest::names::size_of, sizeof( *this ) );
+            def< double_t >( d, "alpha", alpha );
+            def< long >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >
@@ -110,7 +110,7 @@ namespace mynest
                 nest::ConnectorModel& cm )
         {
             ConnectionBase::set_status( d, cm );
-            updateValue< nest::double_t >( d, "alpha", alpha );
+            updateValue< double_t >( d, "alpha", alpha );
         }
 
 
@@ -130,7 +130,7 @@ namespace mynest
     {
         private:
             
-            nest::double_t alpha;
+            double_t alpha;
 
         public:
             
@@ -159,12 +159,12 @@ namespace mynest
             void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
             //! Allows efficient initialization on contstruction
-            void  set_alpha( nest::double_t alpha_ )
+            void  set_alpha( double_t alpha_ )
             {
                 alpha = alpha_;
             }
 
-            virtual nest::double_t compute_modulation(nest::double_t modulation)
+            virtual double_t compute_modulation(double_t modulation)
             {
                 return 1.0 - alpha*modulation;
             }
@@ -175,8 +175,8 @@ namespace mynest
         void D2Connection< targetidentifierT >::get_status( DictionaryDatum& d ) const
         {
             ConnectionBase::get_status( d );
-            def< nest::double_t >( d, "alpha", alpha );
-            def< nest::long_t >( d, nest::names::size_of, sizeof( *this ) );
+            def< double_t >( d, "alpha", alpha );
+            def< long >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >
@@ -184,7 +184,7 @@ namespace mynest
                 nest::ConnectorModel& cm )
         {
             ConnectionBase::set_status( d, cm );
-            updateValue< nest::double_t >( d, "alpha", alpha );
+            updateValue< double_t >( d, "alpha", alpha );
         }
 
 
@@ -206,7 +206,7 @@ namespace mynest
     {
         private:
             
-            nest::double_t alpha;
+            double_t alpha;
 
         public:
             
@@ -235,12 +235,12 @@ namespace mynest
             void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
             //! Allows efficient initialization on contstruction
-            void  set_alpha( nest::double_t alpha_ )
+            void  set_alpha( double_t alpha_ )
             {
                 alpha = alpha_;
             }
 
-            virtual nest::double_t compute_modulation(nest::double_t modulation)
+            virtual double_t compute_modulation(double_t modulation)
             {
                 return 1.0/(1.0 + alpha*modulation);
             }
@@ -251,8 +251,8 @@ namespace mynest
         void D2DivConnection< targetidentifierT >::get_status( DictionaryDatum& d ) const
         {
             ConnectionBase::get_status( d );
-            def< nest::double_t >( d, "alpha", alpha );
-            def< nest::long_t >( d, nest::names::size_of, sizeof( *this ) );
+            def< double_t >( d, "alpha", alpha );
+            def< long >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >
@@ -260,7 +260,7 @@ namespace mynest
                 nest::ConnectorModel& cm )
         {
             ConnectionBase::set_status( d, cm );
-            updateValue< nest::double_t >( d, "alpha", alpha );
+            updateValue< double_t >( d, "alpha", alpha );
         }
 
 

@@ -45,6 +45,7 @@
 
 #include "connection.h"
 #include "static_connection.h"
+#include "volume_transmitter.h"
 #include <vector>
 
 namespace mynest
@@ -74,7 +75,7 @@ namespace mynest
 
             nest::Node* get_node();
 
-            nest::long_t get_vt_gid() const;
+            long get_vt_gid() const;
 
             nest::volume_transmitter* vt_;
 
@@ -83,10 +84,10 @@ namespace mynest
              * The max amount of spikes that this transmitter receives
              * (usually the number of neurons in the source population)
              */ 
-            nest::long_t max_modulation_;
+            long max_modulation_;
     };
 
-    inline nest::long_t ModulatoryCommonProperties::get_vt_gid() const
+    inline long ModulatoryCommonProperties::get_vt_gid() const
     {
         if ( vt_ != 0 )
             return vt_->get_gid();
@@ -103,9 +104,9 @@ namespace mynest
         class ModulatoryConnection : public nest::Connection< targetidentifierT >
     {
         private:
-            nest::double_t weight_baseline; //!< Initial synaptic weight
-            nest::double_t weight_; //!< Synaptic weight
-            nest::long_t deliver_interval; //!< deliver interval of the connected volume transmitter
+            double_t weight_baseline; //!< Initial synaptic weight
+            double_t weight_; //!< Synaptic weight
+            long deliver_interval; //!< deliver interval of the connected volume transmitter
 
 
         public:
@@ -121,8 +122,8 @@ namespace mynest
              */
             ModulatoryConnection() 
                 : ConnectionBase()
-                  ,weight_(1.0)
                   ,weight_baseline(1.0)
+                  ,weight_(1.0)
                   ,deliver_interval(100)
             {
                 weight_ = weight_baseline;
@@ -130,8 +131,8 @@ namespace mynest
 
             ModulatoryConnection( const ModulatoryConnection& rhs) 
                 : ConnectionBase(rhs)
-                  ,weight_(rhs.weight_ )
                   ,weight_baseline(rhs.weight_baseline)
+                  ,weight_(rhs.weight_ )
                   ,deliver_interval(rhs.deliver_interval)
             {
             }
@@ -171,36 +172,46 @@ namespace mynest
              * This function is a boilerplate function that should be included unchanged
              * in all synapse models. It is called before a connection is added to check
              * that the connection is legal. It is a wrapper that allows us to call
-             * the "real" `check_connection_()` method with the `ConnTestDummyNode dummy_target;` class
-             * for this connection type. This avoids a virtual function call for better
-             * performance.
+             * the "real" `check_connection_()` method with the `ConnTestDummyNode
+             * dummy_target;` class for this connection type. This avoids a virtual
+             * function call for better performance.
              *
              * @param s  Source node for connection
              * @param t  Target node for connection
              * @param receptor_type  Receptor type for connection
-             * @param lastspike Time of most recent spike of presynaptic (sender) neuron, not used here
              */
-            void check_connection( nest::Node& s,
-                    nest::Node& t,
-                    nest::rport receptor_type,
-                    nest::double_t,
-                    const CommonPropertiesType& )
-            {
-                ConnTestDummyNode dummy_target;
-                ConnectionBase::check_connection_( dummy_target, s, t, receptor_type );
-            }
+            void
+                check_connection( nest::Node& s,
+                        nest::Node& t,
+                        nest::rport receptor_type,
+                        const CommonPropertiesType& )
+                {
+                    ConnTestDummyNode dummy_target;
+                    ConnectionBase::check_connection_( dummy_target, s, t, receptor_type );
+                }
 
             /**
              * Send an event to the receiver of this connection.
              * @param e The event to send
              * @param t Thread
-             * @param t_lastspike Point in time of last spike sent.
              * @param cp Common properties to all synapses.
              */
-            void send( nest::Event& e,
-                    nest::thread t,
-                    nest::double_t t_lastspike,
-                    const CommonPropertiesType& cp );
+            void send( nest::Event& e, nest::thread t, const CommonPropertiesType& cp );
+
+            // The following methods contain mostly fixed code to forward the
+            // corresponding tasks to corresponding methods in the base class and the w_
+            // data member holding the weight.
+
+            //! Store connection status information in dictionary
+            void get_status( DictionaryDatum& d ) const;
+
+            /**
+             * Set connection status.
+             *
+             * @param d Dictionary with new parameter values
+             * @param cm ConnectorModel is passed along to validate new delay values
+             */
+            void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
             /**
              * triggers an update of a synaptic weight
@@ -215,28 +226,14 @@ namespace mynest
                     double_t t_trig,
                     const CommonPropertiesType& cp );
 
-            // The following methods contain mostly fixed code to forward the corresponding
-            // tasks to corresponding methods in the base class and the w_ data member holding
-            // the weight.
-
-            //! Store connection status information in dictionary
-            void get_status( DictionaryDatum& d ) const;
-
-            /**
-             * Set connection status.
-             *
-             * @param d Dictionary with new parameter values
-             * @param cm ConnectorModel is passed along to validate new delay values
-             */
-            void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
             //! Allows efficient initialization on contstruction
-            void  set_weight( nest::double_t w )
+            void  set_weight( double_t w )
             {
                 weight_ = w;
             }
 
-            virtual nest::double_t compute_modulation(nest::double_t modulation)
+            virtual double_t compute_modulation(double_t modulation)
             {
                 return modulation;
             }
@@ -244,10 +241,10 @@ namespace mynest
 
 
     template < typename targetidentifierT >
-        inline void ModulatoryConnection< targetidentifierT >::send( nest::Event& e,
-                nest::thread t,
-                nest::double_t last,
-                const CommonPropertiesType& props )
+        inline void ModulatoryConnection< targetidentifierT >::send( 
+                nest::Event& e, 
+                nest::thread t, 
+                const CommonPropertiesType& cp )
         {
 
             // Even time stamp, we send the spike using the normal sending mechanism
@@ -264,10 +261,10 @@ namespace mynest
         void ModulatoryConnection< targetidentifierT >::get_status( DictionaryDatum& d ) const
         {
             ConnectionBase::get_status( d );
-            def< nest::double_t >( d, nest::names::weight, weight_ );
-            def< nest::double_t >( d, "weight_baseline", weight_baseline );
-            def< nest::long_t >( d, "deliver_interval", deliver_interval );
-            def< nest::long_t >( d, nest::names::size_of, sizeof( *this ) );
+            def< double_t >( d, nest::names::weight, weight_ );
+            def< double_t >( d, "weight_baseline", weight_baseline );
+            def< long >( d, "deliver_interval", deliver_interval );
+            def< long >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >
@@ -275,25 +272,25 @@ namespace mynest
                 nest::ConnectorModel& cm )
         {
             ConnectionBase::set_status( d, cm );
-            updateValue< nest::double_t >( d, nest::names::weight, weight_ );
-            updateValue< nest::double_t >( d, "weight_baseline", weight_baseline );
-            updateValue< nest::long_t >( d, "deliver_interval", deliver_interval );
+            updateValue< double_t >( d, nest::names::weight, weight_ );
+            updateValue< double_t >( d, "weight_baseline", weight_baseline );
+            updateValue< long >( d, "deliver_interval", deliver_interval );
         }
     
     template < typename targetidentifierT >
         inline void ModulatoryConnection< targetidentifierT >::trigger_update_weight( 
                 nest::thread t,
                 const std::vector< nest::spikecounter >& modulatory_spikes,
-                const nest::double_t t_trig,
+                const double_t t_trig,
                 const CommonPropertiesType& cp )
         {     
             
-            nest::double_t num_spikes = 0;
+            double_t num_spikes = 0;
             for(const auto & sc: modulatory_spikes)
                 num_spikes += sc.multiplicity_;
 
             // compute the ratio of spikes per deliver_interval between [0,1]
-            nest::double_t modulation =  2*num_spikes/(deliver_interval*cp.max_modulation_);
+            double_t modulation =  2*num_spikes/(deliver_interval*cp.max_modulation_);
 
             // update the weight based on a function of the ratio 
             // given by the compute_modulation() method

@@ -28,26 +28,35 @@
  *   Modified from https://github.com/nest/nest-simulator/blob/v2.10.0/examples/MyModule/mymodule.cpp 
  */
 
+#include "modmodule.h"
 
-// include necessary NEST headers
+// Generated includes:
 #include "config.h"
-#include "network.h"
-#include "model.h"
-#include "dynamicloader.h"
-#include "genericmodel.h"
-#include "booldatum.h"
-#include "integerdatum.h"
-#include "tokenarray.h"
-#include "exceptions.h"
-#include "sliexceptions.h"
-#include "nestmodule.h"
-#include "connector_model_impl.h"
-#include "target_identifier.h"
+
 
 // include headers with your own stuff
 #include "modmodule.h"
 #include "modulatory_connection.h"
 #include "da_connection.h"
+
+// Includes from nestkernel:
+#include "connection_manager_impl.h"
+#include "connector_model_impl.h"
+#include "dynamicloader.h"
+#include "exceptions.h"
+#include "genericmodel.h"
+#include "genericmodel_impl.h"
+#include "kernel_manager.h"
+#include "model.h"
+#include "model_manager_impl.h"
+#include "nestmodule.h"
+#include "target_identifier.h"
+
+// Includes from sli:
+#include "booldatum.h"
+#include "integerdatum.h"
+#include "sliexceptions.h"
+#include "tokenarray.h"
 
 // -- Interface to dynamic module loader ---------------------------------------
 
@@ -110,12 +119,16 @@ mynest::ModModule::init( SLIInterpreter* i )
      even further, but limits the number of available rports. Please see
      Kunkel et al, Front Neurofinfom 8:78 (2014), Sec 3.3.2, for details.
   */
-  nest::register_connection_model< ModulatoryConnection< nest::TargetIdentifierPtrRport > >(
-    nest::NestModule::get_network(), "modulatory_synapse" );
-  nest::register_connection_model< D1Connection< nest::TargetIdentifierPtrRport > >(
-    nest::NestModule::get_network(), "d1_synapse" );
-  nest::register_connection_model< D2Connection< nest::TargetIdentifierPtrRport > >(
-    nest::NestModule::get_network(), "d2_synapse" );
-  nest::register_connection_model< D2DivConnection< nest::TargetIdentifierPtrRport > >(
-    nest::NestModule::get_network(), "d2_div_synapse" );
+  nest::kernel()
+    .model_manager.register_connection_model< ModulatoryConnection< nest::TargetIdentifierPtrRport > >(
+     "modulatory_synapse" );
+  nest::kernel()
+    .model_manager.register_connection_model< D1Connection< nest::TargetIdentifierPtrRport > >(
+     "d1_synapse" );
+  nest::kernel()
+    .model_manager.register_connection_model< D2Connection< nest::TargetIdentifierPtrRport > >(
+     "d2_synapse" );
+  nest::kernel()
+    .model_manager.register_connection_model< D2DivConnection< nest::TargetIdentifierPtrRport > >(
+     "d2_div_synapse" );
 } // ModModule::init()
