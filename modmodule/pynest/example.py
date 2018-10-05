@@ -76,10 +76,6 @@ NEURONS_MOD = nest.Create("iaf_psc_exp",NEURONS_MOD_N)
 VOL = nest.Create("volume_transmitter")
 nest.SetStatus(VOL,"deliver_interval", 300)
 
-# define a 'exitmod_synapse type'
-nest.CopyModel("d1_synapse","exitmod_synapse", { "vt": VOL[0], 
-            "alpha": 3.0,"max_modulation": NEURONS_MOD_N } )
-
 # create array of weights
 w_array = 1.0*np.ones([NEURONS_POST_N, NEURONS_PRE_N])
 # sparsify
@@ -87,7 +83,7 @@ w_array = bernoulli_distribution(w_array, RO=0.1)
 
 # create the modulatory connection 
 conn_dict = {"rule": "all_to_all"}
-syn_dict = {"model": "exitmod_synapse" }
+syn_dict = {"model": "d1_synapse", "vt": VOL[0], "alpha": 3.0, "max_modulation": NEURONS_MOD_N  }
 nest.Connect(NEURONS_PRE,NEURONS_POST, conn_spec=conn_dict, syn_spec=syn_dict)
 
 # connect poisson and neurons
