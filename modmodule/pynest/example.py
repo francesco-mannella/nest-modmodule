@@ -75,7 +75,7 @@ NEURONS_MOD = nest.Create("iaf_psc_exp",NEURONS_MOD_N)
 # create the volume transmitter to be attached to the connection
 VOL = nest.Create("volume_transmitter")
 nest.SetStatus(VOL,"deliver_interval", 300)
-
+::::
 # create array of weights
 w_array = 1.0*np.ones([NEURONS_POST_N, NEURONS_PRE_N])
 # sparsify

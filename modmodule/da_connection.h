@@ -80,7 +80,7 @@ namespace mynest
              * Set connection status.
              *
              * @param d Dictionary with new parameter values
-             * @param cm ConnectorModel is passed along to validate new delay values
+             * @param cm ConnectorModel is passed along_t to validate new delay values
              */
             void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
@@ -102,7 +102,7 @@ namespace mynest
         {
             ConnectionBase::get_status( d );
             def< double_t >( d, "alpha", alpha );
-            def< long >( d, nest::names::size_of, sizeof( *this ) );
+            def< long_t >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >
@@ -154,7 +154,7 @@ namespace mynest
              * Set connection status.
              *
              * @param d Dictionary with new parameter values
-             * @param cm ConnectorModel is passed along to validate new delay values
+             * @param cm ConnectorModel is passed along_t to validate new delay values
              */
             void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
@@ -176,7 +176,7 @@ namespace mynest
         {
             ConnectionBase::get_status( d );
             def< double_t >( d, "alpha", alpha );
-            def< long >( d, nest::names::size_of, sizeof( *this ) );
+            def< long_t >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >
@@ -230,7 +230,7 @@ namespace mynest
              * Set connection status.
              *
              * @param d Dictionary with new parameter values
-             * @param cm ConnectorModel is passed along to validate new delay values
+             * @param cm ConnectorModel is passed along_t to validate new delay values
              */
             void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
@@ -252,7 +252,7 @@ namespace mynest
         {
             ConnectionBase::get_status( d );
             def< double_t >( d, "alpha", alpha );
-            def< long >( d, nest::names::size_of, sizeof( *this ) );
+            def< long_t >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >

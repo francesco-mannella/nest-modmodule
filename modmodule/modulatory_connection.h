@@ -48,6 +48,8 @@
 #include "volume_transmitter.h"
 #include <vector>
 
+typedef long int long_t;
+
 namespace mynest
 {
 
@@ -75,19 +77,23 @@ namespace mynest
 
             nest::Node* get_node();
 
-            long get_vt_gid() const;
+            long_t get_vt_gid() const;
 
             nest::volume_transmitter* vt_;
-
+            
+            /**
+             * deliver interval of the  volume transmitter
+             */ 
+            long_t deliver_interval_;
 
             /**
              * The max amount of spikes that this transmitter receives
              * (usually the number of neurons in the source population)
              */ 
-            long max_modulation_;
+            long_t max_modulation_;
     };
 
-    inline long ModulatoryCommonProperties::get_vt_gid() const
+    inline long_t ModulatoryCommonProperties::get_vt_gid() const
     {
         if ( vt_ != 0 )
             return vt_->get_gid();
@@ -106,7 +112,6 @@ namespace mynest
         private:
             double_t weight_baseline; //!< Initial synaptic weight
             double_t weight_; //!< Synaptic weight
-            long deliver_interval; //!< deliver interval of the connected volume transmitter
 
 
         public:
@@ -124,7 +129,6 @@ namespace mynest
                 : ConnectionBase()
                   ,weight_baseline(1.0)
                   ,weight_(1.0)
-                  ,deliver_interval(100)
             {
                 weight_ = weight_baseline;
             }
@@ -133,7 +137,6 @@ namespace mynest
                 : ConnectionBase(rhs)
                   ,weight_baseline(rhs.weight_baseline)
                   ,weight_(rhs.weight_ )
-                  ,deliver_interval(rhs.deliver_interval)
             {
             }
 
@@ -194,7 +197,7 @@ namespace mynest
              * Send an event to the receiver of this connection.
              * @param e The event to send
              * @param t Thread
-             * @param cp Common properties to all synapses.
+* @param cp Common properties to all synapses.
              */
             void send( nest::Event& e, nest::thread t, const CommonPropertiesType& cp );
 
@@ -209,7 +212,7 @@ namespace mynest
              * Set connection status.
              *
              * @param d Dictionary with new parameter values
-             * @param cm ConnectorModel is passed along to validate new delay values
+             * @param cm ConnectorModel is passed along_t to validate new delay values
              */
             void set_status( const DictionaryDatum& d, nest::ConnectorModel& cm );
 
@@ -263,8 +266,7 @@ namespace mynest
             ConnectionBase::get_status( d );
             def< double_t >( d, nest::names::weight, weight_ );
             def< double_t >( d, "weight_baseline", weight_baseline );
-            def< long >( d, "deliver_interval", deliver_interval );
-            def< long >( d, nest::names::size_of, sizeof( *this ) );
+            def< long_t >( d, nest::names::size_of, sizeof( *this ) );
         }
 
     template < typename targetidentifierT >
@@ -274,7 +276,6 @@ namespace mynest
             ConnectionBase::set_status( d, cm );
             updateValue< double_t >( d, nest::names::weight, weight_ );
             updateValue< double_t >( d, "weight_baseline", weight_baseline );
-            updateValue< long >( d, "deliver_interval", deliver_interval );
         }
     
     template < typename targetidentifierT >
@@ -290,8 +291,8 @@ namespace mynest
                 num_spikes += sc.multiplicity_;
 
             // compute the ratio of spikes per deliver_interval between [0,1]
-            double_t modulation =  2*num_spikes/(deliver_interval*cp.max_modulation_);
-
+            double_t modulation =  num_spikes/(cp.deliver_interval_*cp.max_modulation_);
+            
             // update the weight based on a function of the ratio 
             // given by the compute_modulation() method
             weight_ = weight_baseline*compute_modulation(modulation);
@@ -300,4 +301,4 @@ namespace mynest
 
 } // namespace nest
 
-#endif // MODULATORY_CONNECTION
+#endif // MODULATORY_CONNECTION_/

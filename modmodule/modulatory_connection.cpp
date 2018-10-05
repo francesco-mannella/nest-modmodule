@@ -41,7 +41,8 @@ namespace mynest
     ModulatoryCommonProperties::ModulatoryCommonProperties()
         : nest::CommonSynapseProperties(),
         vt_( 0 ),
-        max_modulation_(1.0)
+        deliver_interval_( 300 ),
+        max_modulation_( 1 )
     {
     }
 
@@ -50,11 +51,12 @@ namespace mynest
         nest::CommonSynapseProperties::get_status( d );
 
         if ( vt_ != 0 )
-            def< long >( d, "vt", vt_->get_gid() );
+            def< long_t >( d, "vt", vt_->get_gid() );
         else
-            def< long >( d, "vt", -1 );
+            def< long_t >( d, "vt", -1 );
         
-        def< long >( d, "max_modulation", max_modulation_ );
+        def< long_t >( d, "deliver_interval", deliver_interval_ );
+        def< long_t >( d, "max_modulation", max_modulation_ );
 
     }
 
@@ -63,10 +65,11 @@ namespace mynest
     {
         nest::CommonSynapseProperties::set_status( d, cm );
        
-        updateValue< long >( d, "max_modulation", max_modulation_ );
+        updateValue< long_t >( d, "deliver_interval", deliver_interval_ );
+        updateValue< long_t >( d, "max_modulation", max_modulation_ );
 
-        long vtgid;
-        if ( updateValue< long >( d, "vt", vtgid ) )
+        long_t vtgid;
+        if ( updateValue< long_t >( d, "vt", vtgid ) )
         {
             vt_ = dynamic_cast< nest::volume_transmitter* >( 
                     nest::kernel().node_manager.get_node( vtgid ) );
