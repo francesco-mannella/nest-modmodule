@@ -13,9 +13,13 @@ d2_div_synapse  :=   weight*/(1+alpha*ratio)
 
 ```
 
-***Install:***
+***Install***
+install nest 2.10.0:
+
+cd nest-2.10
+
 To compile and install the module just follow the [nest-developer tutorial for extension modules]( http://nest.github.io/nest-simulator/extension_modules)
 
 
-***Dependencies:***
+***Dependencies***
 The module has been currently tested on the release of nest [2.10.0](http://www.nest-initiative.org/nestactivity/release-of-nest-2-10-0/)
