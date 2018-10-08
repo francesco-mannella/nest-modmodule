@@ -16,10 +16,22 @@ d2_div_synapse  :=   weight*/(1+alpha*ratio)
 ***Install***
 install nest 2.10.0:
 
-cd nest-2.10
+    cd nest-2.10
+    ./boostrap.sh
+    ./configure --prefix=/opt/nest210 
+    make -j4 -l4
+    sudo make install
+    echo 'export PATH=$PATH:/opt/nest210/bin' >> ${HOME}/bashrc
+    echo 'export PYTHONPATH=/opt/nest210/lib/python2.7/site-packages:$PYTHONPATH' >> ${HOME}/bashrc
+    cd ..
 
-To compile and install the module just follow the [nest-developer tutorial for extension modules]( http://nest.github.io/nest-simulator/extension_modules)
+install modmodule:
 
-
+    cd modmodule
+    ./boostrap.sh
+    ./configure --with-nest=/opt/nest210/bin/nest-config
+    make -j4 -l4
+    sudo make install
+    
 ***Dependencies***
-The module has been currently tested on the release of nest [2.10.0](http://www.nest-initiative.org/nestactivity/release-of-nest-2-10-0/)
+The module has been currently tested on the release of nest [2.10.0](http://www.nest-initiative.org/nestactivity/release-of-nest-2-10-0/).
