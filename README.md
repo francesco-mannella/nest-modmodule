@@ -24,8 +24,8 @@ install nest 2.10.0:
     ./configure --prefix=/opt/nest210 
     make -j4 -l4
     sudo make install
-    echo 'export PATH=$PATH:/opt/nest210/bin' >> ${HOME}/bashrc
-    echo 'export PYTHONPATH=/opt/nest210/lib/python2.7/site-packages:$PYTHONPATH' >> ${HOME}/bashrc
+    echo 'export PATH=$PATH:/opt/nest210/bin' >> ${HOME}/.bashrc
+    echo 'export PYTHONPATH=/opt/nest210/lib/python2.7/site-packages:$PYTHONPATH' >> ${HOME}/.bashrc
     cd ..
 
 install modmodule:
