@@ -14,6 +14,7 @@ d2_div_synapse  :=   weight*/(1+alpha*ratio)
 ```
 
 ***Install***
+
 install nest 2.10.0:
 
     cd nest-2.10
