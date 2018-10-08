@@ -16,8 +16,10 @@ d2_div_synapse  :=   weight*/(1+alpha*ratio)
 ***Install***
 
 install nest 2.10.0:
+
     git submodule update --init --recursive --remote
     cd nest-2.10
+    git checkout 2.10
     ./boostrap.sh
     ./configure --prefix=/opt/nest210 
     make -j4 -l4
